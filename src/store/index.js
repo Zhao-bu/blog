@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
+    userInfo:{},
     tabIndex: '1',
     tabList: [
       {
@@ -40,16 +41,20 @@ const store = new Vuex.Store({
     ],
     dropList:[{
       id:'1',
-      title:'个人中心'
+      title:'个人中心',
+      path:'personal'
     },{
       id:'2',
-      title:'内容管理'
+      title:'内容管理',
+      path:'contents'
     },{
       id:'3',
-      title:'我的学习'
+      title:'我的学习',
+      path:'myStudy'
     },{
       id:'4',
-      title:'退出登录'
+      title:'退出登录',
+      path:'signOut'
     }]
   },
   actions: {
@@ -63,6 +68,9 @@ const store = new Vuex.Store({
       console.log(state,payload)
       state.tabIndex = payload
     },
+    setUserInfo(state,payload){
+      state.userInfo = payload
+    }
   },
   getters: {
     getTabIndex(state) {

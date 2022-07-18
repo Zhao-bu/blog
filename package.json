@@ -1,5 +1,5 @@
 {
-  "name": "vlog",
+  "name": "blog",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "zhaoPoo <1196218720@qq.com>",
@@ -10,9 +10,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "element-ui": "^2.15.9",
     "express": "^4.18.1",
     "mysql": "^2.18.1",
+    "save": "^2.5.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuex": "^4.0.2"

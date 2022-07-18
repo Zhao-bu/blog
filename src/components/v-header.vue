@@ -3,7 +3,7 @@
         <div class="v-logo">
             <img
                 src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-3393facb-1b77-48a7-86d7-13d5976f7748/3be09ab0-622f-4bc8-ab91-b11146dab6ed.png">
-            <div>cb-vlog</div>
+            <div>blog</div>
         </div>
         <div class="v-tab">
             <el-menu :default-active="tabIndex" active-text-color="#409EFF" class="el-menu-demo" mode="horizontal"
@@ -21,12 +21,13 @@
             </el-input>
         </div>
         <div class="v-tool">
-            <el-dropdown>
+            <div class="login-font" v-if="!isLogin" @click="userLogin"> 登录 </div>
+            <el-dropdown v-else @command="handleCommand">
                 <span class="el-dropdown-link">
-                    <el-avatar size="small" :src="circleUrl"></el-avatar>
+                    <el-avatar size="small" :src="userInfo.avatar ? userInfo.avatar:circleUrl"></el-avatar>
                 </span>
-                <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item v-for="item in dropList" :key="item.id">{{item.title}}</el-dropdown-item>
+                <el-dropdown-menu slot="dropdown" >
+                    <el-dropdown-item v-for="item in dropList" :key="item.id"  :command="item.path">{{ item.title }}</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
         </div>
@@ -44,12 +45,53 @@ export default {
         };
     },
     computed: {
-        ...mapState(['tabList','tabIndex','dropList']), // 经过解构后，自动就添加到了计算属性中，此时就可以直接像访问计算属性一样访问它
+        isLogin() {
+            return this.checkLogin()
+        },
+        ...mapState(['tabList', 'tabIndex', 'dropList', 'userInfo']), // 经过解构后，自动就添加到了计算属性中，此时就可以直接像访问计算属性一样访问它
     },
     methods: {
         handleSelect(key, keyPath) {
-            this.$store.commit('setTabIndex',key)
-        }
+            this.$store.commit('setTabIndex', key)
+        },
+        userLogin() {
+            let that = this
+            that.$axios({
+                method: "get",//指定请求方式
+                url: "http://localhost:3300/login",//请求接口（相对接口，后面会介绍到）
+            }).then(function (res) {
+                //接口成功返回结果执行
+                console.log(res.data.data)
+                that.$store.commit('setUserInfo', res.data.data)
+            }).catch(function (err) {
+                //请求失败或者接口返回失败或者.then()中的代码发生错误时执行
+            })
+        },
+        handleCommand(command) {
+            const that = this;
+            if(command == "signOut"){
+                that.$store.commit('setUserInfo', {})
+            }else{
+                this.$message('click on item ' + command);
+            }
+            
+        },
+        checkLogin() {
+            const userInfo = this.userInfo
+            if (userInfo === undefined) {
+                return false
+            }
+            if (userInfo === null) {
+                return false
+            }
+            if (userInfo === '') {
+                return false
+            }
+            if (JSON.stringify(userInfo) === '{}') {
+                return false
+            }
+            return true
+        },
     }
 }
 </script>
@@ -58,7 +100,7 @@ export default {
 .v-grid-header {
     display: grid;
     width: 100%;
-    grid-template-columns: 13% 64% 15% 5%;
+    grid-template-columns: 15% 62% 15% 5%;
     grid-gap: 1%;
     border-bottom: 1px solid #d9ecff;
 }
@@ -78,7 +120,7 @@ export default {
 .v-logo {
     display: flex;
     align-items: center;
-    padding-left: 20px;
+    padding-left: 50px;
 }
 
 .v-search {
@@ -102,5 +144,10 @@ export default {
 
 .el-icon-arrow-down {
     font-size: 12px;
+}
+
+.login-font {
+    font-size: 14px;
+    color: gray;
 }
 </style>
