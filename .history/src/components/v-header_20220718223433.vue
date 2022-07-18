@@ -131,10 +131,8 @@ export default {
 
 .v-tool {
     align-items: center;
-    display: grid;
-    width: 100%;
-    grid-template-columns: 29% 70%;
-    grid-gap: 1%;
+    display: flex;
+    text-align: right;
 }
 
 .el-menu-demo {
@@ -153,10 +151,8 @@ export default {
 .login-font {
     font-size: 14px;
     color: gray;
-    text-align: center;
 }
-.writing{
-    width: 80%;
-    margin-left: 10%;
-}
+/* .writing{
+    float: right;
+} */
 </style>

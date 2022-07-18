@@ -7,7 +7,7 @@
             <vcontent></vcontent>
             <div class="grid-right">
                 <el-carousel height="150px" class="carousel">
-                    <el-carousel-item v-for="item in 5" :key="item">
+                    <el-carousel-item v-for="item in 4" :key="item">
                         <!-- <h3 class="small">{{ item }}</h3> -->
                     </el-carousel-item>
                 </el-carousel>

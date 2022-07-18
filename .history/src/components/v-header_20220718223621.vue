@@ -133,7 +133,7 @@ export default {
     align-items: center;
     display: grid;
     width: 100%;
-    grid-template-columns: 29% 70%;
+    grid-template-columns: 39% 60%;
     grid-gap: 1%;
 }
 
@@ -153,10 +153,6 @@ export default {
 .login-font {
     font-size: 14px;
     color: gray;
-    text-align: center;
 }
-.writing{
-    width: 80%;
-    margin-left: 10%;
-}
+
 </style>

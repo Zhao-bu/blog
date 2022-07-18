@@ -153,10 +153,8 @@ export default {
 .login-font {
     font-size: 14px;
     color: gray;
-    text-align: center;
 }
 .writing{
-    width: 80%;
-    margin-left: 10%;
+    width: 90px;
 }
 </style>

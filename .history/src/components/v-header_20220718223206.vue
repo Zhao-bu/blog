@@ -30,7 +30,7 @@
                     <el-dropdown-item v-for="item in dropList" :key="item.id"  :command="item.path">{{ item.title }}</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
-            <el-button type="primary" class="writing" icon="el-icon-edit" size="mini">写文章</el-button>
+            <el-button type="primary" icon="el-icon-edit" size="mini">写文章</el-button>
         </div>
     </div>
 </template>
@@ -131,10 +131,7 @@ export default {
 
 .v-tool {
     align-items: center;
-    display: grid;
-    width: 100%;
-    grid-template-columns: 29% 70%;
-    grid-gap: 1%;
+    display: flex;
 }
 
 .el-menu-demo {
@@ -153,10 +150,5 @@ export default {
 .login-font {
     font-size: 14px;
     color: gray;
-    text-align: center;
-}
-.writing{
-    width: 80%;
-    margin-left: 10%;
 }
 </style>

@@ -7,7 +7,7 @@
             <vcontent></vcontent>
             <div class="grid-right">
                 <el-carousel height="150px" class="carousel">
-                    <el-carousel-item v-for="item in 5" :key="item">
+                    <el-carousel-item v-for="item in 4" :key="item">
                         <!-- <h3 class="small">{{ item }}</h3> -->
                     </el-carousel-item>
                 </el-carousel>
@@ -32,8 +32,7 @@ export default {
     },
     data() {
         return {
-            cardList: [1, 1, 1, 1, 1, 1, 1],
-            carouselList:[]
+            cardList: [1, 1, 1, 1, 1, 1, 1]
         };
     },
     methods: {
@@ -63,7 +62,7 @@ export default {
 .v-grid {
     display: grid;
     width: 100%;
-    grid-template-columns: 15% 60% 22%;
+    grid-template-columns: 15% 62% 20%;
     grid-gap: 1%;
     height: 100vh;
 }
