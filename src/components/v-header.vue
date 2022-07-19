@@ -21,7 +21,7 @@
             </el-input>
         </div>
         <div class="v-tool">
-            <div class="login-font" v-if="!isLogin" @click="userLogin"> 登录 </div>
+            <div class="login-font" v-if="!isLogin" @click="$router.push('/login')"> 登录 </div>
             <el-dropdown v-else @command="handleCommand">
                 <span class="el-dropdown-link">
                     <el-avatar size="small" :src="userInfo.avatar ? userInfo.avatar:circleUrl"></el-avatar>
@@ -30,7 +30,7 @@
                     <el-dropdown-item v-for="item in dropList" :key="item.id"  :command="item.path">{{ item.title }}</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
-            <el-button type="primary" class="writing" icon="el-icon-edit" size="mini">写文章</el-button>
+            <el-button type="primary" class="writing" icon="el-icon-edit" size="mini" @click="toWrite">发博</el-button>
         </div>
     </div>
 </template>
@@ -55,25 +55,15 @@ export default {
         handleSelect(key, keyPath) {
             this.$store.commit('setTabIndex', key)
         },
-        userLogin() {
-            let that = this
-            that.$axios({
-                method: "get",//指定请求方式
-                url: "http://localhost:3300/login",//请求接口（相对接口，后面会介绍到）
-            }).then(function (res) {
-                //接口成功返回结果执行
-                console.log(res.data.data)
-                that.$store.commit('setUserInfo', res.data.data)
-            }).catch(function (err) {
-                //请求失败或者接口返回失败或者.then()中的代码发生错误时执行
-            })
+        toWrite(){
+            this.$router.push('/write')
         },
         handleCommand(command) {
             const that = this;
             if(command == "signOut"){
                 that.$store.commit('setUserInfo', {})
             }else{
-                this.$message('click on item ' + command);
+                that.$message('click on item ' + command);
             }
             
         },
@@ -101,7 +91,7 @@ export default {
 .v-grid-header {
     display: grid;
     width: 100%;
-    grid-template-columns: 15% 55% 17% 10%;
+    grid-template-columns: 15% 55% 15% 12%;
     grid-gap: 1%;
     border-bottom: 1px solid #d9ecff;
 }
@@ -156,7 +146,7 @@ export default {
     text-align: center;
 }
 .writing{
-    width: 80%;
-    margin-left: 10%;
+    width: 70%;
+    margin-left: 15%;
 }
 </style>
