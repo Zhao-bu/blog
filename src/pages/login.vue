@@ -27,8 +27,8 @@ export default {
     data() {
         return {
             user:{
-                account:"1196218720@qq.com",
-                passWord:'888888',
+                account:"admin",
+                passWord:'123456',
             },
         }
     },
@@ -44,6 +44,7 @@ export default {
                 url: "http://localhost:3300/login",//请求接口（相对接口，后面会介绍到）
                 data:that.user,
             }).then(function (res) {
+                console.log(res)
                 //接口成功返回结果执行
                 const {code,data,message} = res.data;
                 if(code == '200'){
