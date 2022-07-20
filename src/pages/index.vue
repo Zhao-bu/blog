@@ -1,34 +1,30 @@
 <template>
     <div>
-        <vheader></vheader>
-
+        <v-header ref="vHeader"></v-header>
         <div class="v-grid">
             <div class="grid-left"></div>
-            <vcontent></vcontent>
+            <v-content></v-content>
             <div class="grid-right">
                 <el-carousel height="200px" class="carousel">
                     <el-carousel-item v-for="item in 5" :key="item">
                         <!-- <h3 class="small">{{ item }}</h3> -->
                     </el-carousel-item>
                 </el-carousel>
-                <vcard v-for="(item, index) in cardList" :key="index"></vcard>
+                <v-card v-for="(item, index) in cardList" :key="index"></v-card>
             </div>
         </div>
-        <!-- <logbox></logbox> -->
     </div>
 
 </template>
 <script>
-import logBox from "@/components/logBox";
-import vheader from "@/components/v-header";
-import vcontent from "@/components/v-content";
-import vcard from "@/components/v-card";
+import vHeader from "@/components/v-header";
+import vContent from "@/components/v-content";
+import vCard from "@/components/v-card";
 export default {
     components: {
-        logbox: logBox,
-        vheader,
-        vcontent,
-        vcard
+        vHeader,
+        vContent,
+        vCard
     },
     data() {
         return {
@@ -40,7 +36,7 @@ export default {
         commit() {
             // setTabIndex
             this.$store.commit('setTabIndex', '3')
-            console.log(this.$store)
+            // console.log(this.$store)
         },
         dispatch() {
             // setTabIndex

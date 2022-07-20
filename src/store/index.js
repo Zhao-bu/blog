@@ -12,12 +12,14 @@ const store = new Vuex.Store({
         id: "1",
         title: "首页",
         haveSub: false,
+        path:'/',
         submenu: []
       },
       {
         id: "2",
         title: "内容",
         haveSub: false,
+        path:'/content',
         submenu: []
       },
       {

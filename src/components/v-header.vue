@@ -22,14 +22,9 @@
         </div>
         <div class="v-tool">
             <div class="login-font" v-if="!isLogin" @click="$router.push('/login')"> 登录 </div>
-            <el-dropdown v-else @command="handleCommand">
-                <span class="el-dropdown-link">
-                    <el-avatar size="small" :src="userInfo.avatar ? userInfo.avatar:circleUrl"></el-avatar>
-                </span>
-                <el-dropdown-menu slot="dropdown" >
-                    <el-dropdown-item v-for="item in dropList" :key="item.id"  :command="item.path">{{ item.title }}</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
+            <div  v-else style="text-align: center;">
+                <v-avatar></v-avatar>
+            </div>
             <el-button type="primary" class="writing" icon="el-icon-edit" size="mini" @click="toWrite">发博</el-button>
         </div>
     </div>
@@ -37,11 +32,13 @@
 
 <script>
 import { mapState } from 'vuex'; // 从vuex中导入mapState
+import vAvatar from '@/components/v-avatar';
 export default {
-    name: 'vheader',
+  components: { vAvatar },
+    name: 'vHeader',
     data() {
         return {
-            circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+            
             search: '',
         };
     },
@@ -49,23 +46,21 @@ export default {
         isLogin() {
             return this.checkLogin()
         },
-        ...mapState(['tabList', 'tabIndex', 'dropList', 'userInfo']), // 经过解构后，自动就添加到了计算属性中，此时就可以直接像访问计算属性一样访问它
+        ...mapState(['tabList', 'tabIndex', 'userInfo']), // 经过解构后，自动就添加到了计算属性中，此时就可以直接像访问计算属性一样访问它
     },
     methods: {
         handleSelect(key, keyPath) {
-            this.$store.commit('setTabIndex', key)
+            const that = this;
+            if(key == that.tabIndex){
+                return
+            }else{
+                let index = parseInt(key) - 1;
+                that.$store.commit('setTabIndex', key)
+                that.$router.push(that.tabList[index].path);
+            }
         },
         toWrite(){
             this.$router.push('/write')
-        },
-        handleCommand(command) {
-            const that = this;
-            if(command == "signOut"){
-                that.$store.commit('setUserInfo', {})
-            }else{
-                that.$message('click on item ' + command);
-            }
-            
         },
         checkLogin() {
             const userInfo = this.userInfo
@@ -94,6 +89,7 @@ export default {
     grid-template-columns: 15% 55% 15% 12%;
     grid-gap: 1%;
     border-bottom: 1px solid #d9ecff;
+    
 }
 
 .v-logo>img {

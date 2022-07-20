@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'vcontent',
+  name: 'vContent',
   data() {
     return {
       contentList: [1,1,1,1,1,1,1,1,1,1]

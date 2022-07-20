@@ -48,6 +48,7 @@ export default {
                 const {code,data,message} = res.data;
                 if(code == '200'){
                     that.$store.commit('setUserInfo', data)
+                    
                     that.$router.push('/')
                 }else{
                     that.$message(message);
@@ -81,8 +82,9 @@ export default {
 }
 .btn-box{
     margin: 5px 0;
-    display: grid;
+   
     width: 100%;
+     display: grid;
     grid-template-columns: 38% 38%;
     grid-gap: 24%;
 }

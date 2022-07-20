@@ -36,8 +36,6 @@ Vue.component('MdEditor', mdEditor);
 /* v-md-editor 编辑器 end  */
 
 
-
-
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 Vue.prototype.$store = store

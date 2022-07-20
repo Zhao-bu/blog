@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'vcard',
+  name: 'vCard',
   data() {
     return {
       msg: ''

@@ -9,8 +9,7 @@ import blog from '@/pages/blog'
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [
+const routes = [
     {
       path: '/',
       name: 'index',
@@ -34,4 +33,12 @@ export default new Router({
     },
     
   ]
-})
+  const router = new Router({
+    // 配置单页应用的基本路径
+    // base: '/app/',
+    // history模式，访问不带#
+    mode: 'history',
+    routes,
+    fallback: 'true'
+  })
+  export default router
