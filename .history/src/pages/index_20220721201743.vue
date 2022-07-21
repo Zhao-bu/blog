@@ -3,7 +3,7 @@
         <v-header ref="vHeader" class="header"></v-header>
         <div class="v-grid">
             <div class="grid-left">
-                <v-author-card v-if="showBlog"></v-author-card>
+                <v-avatar-card></v-avatar-card>
             </div>
             <div>
                 <v-content v-if="!showBlog" ></v-content>
@@ -26,14 +26,14 @@ import vBlog from "@/components/v-blog"
 import vHeader from "@/components/v-header";
 import vContent from "@/components/v-content";
 import vCard from "@/components/v-card";
-import vAuthorCard from "@/components/v-author-card";
+import vAvatarVue from "../components/v-avatar.vue";
 export default {
     components: {
         vHeader,
         vContent,
         vCard,
         vBlog,
-        vAuthorCard
+        vAvatarVue
     },
     data() {
         return {

@@ -3,7 +3,7 @@
         <v-header ref="vHeader" class="header"></v-header>
         <div class="v-grid">
             <div class="grid-left">
-                <v-author-card v-if="showBlog"></v-author-card>
+                <v-author-card></v-author-card>
             </div>
             <div>
                 <v-content v-if="!showBlog" ></v-content>

@@ -21,13 +21,7 @@ export default {
   name: 'vContent',
   data() {
     return {
-      contentList: [{
-        avatar:'https://avatars.githubusercontent.com/u/79249312?v=4',
-        author:'Zhao-bu',
-        timeAgo:'1分钟前',
-        coverImg:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
-        title:'xxxxxxxxxx'
-      }],
+      contentList: [],
       circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
       pic: "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
     }
