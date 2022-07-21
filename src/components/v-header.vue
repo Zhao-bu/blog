@@ -8,7 +8,7 @@
         <div class="v-tab">
             <el-menu :default-active="tabIndex" active-text-color="#409EFF" class="el-menu-demo" mode="horizontal"
                 @select="handleSelect">
-                <el-menu-item :index="item.id" v-for="item in tabList" :key="item.id">{{ item.title }}
+                <el-menu-item :index="item.id" v-for="item in tabList" :key="item.id" :disabled="item.disabled">{{ item.title }}
                 </el-menu-item>
                 <!-- <el-submenu index="item.id">
                         <template slot="title">{{item.title}}</template>
@@ -86,7 +86,7 @@ export default {
 .v-grid-header {
     display: grid;
     width: 100%;
-    grid-template-columns: 15% 55% 15% 12%;
+    grid-template-columns: 14% 55% 16% 12%;
     grid-gap: 1%;
     border-bottom: 1px solid #d9ecff;
     

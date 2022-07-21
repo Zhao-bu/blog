@@ -41,6 +41,7 @@ connection.query(delSql,function (err, result) {
 }
 
 
+
 //改
 function updateUser(){
     var modSql = 'UPDATE user SET name = ? WHERE id = ?';
@@ -72,22 +73,7 @@ function queryUser(){
 });
 }
 
-// var addSql = "INSERT INTO user(nickName,phone,avatar,account,passWord) VALUES(?,?,?,?,?)";
-// var addSqlParams = ["呃呃","22222222222","https://img2.baidu.com/it/u=1994380678,3283034272&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1658250000&t=24687857572ce3854ce2caa229a08fd3","user1","123456"];
-// connection.query(addSql, addSqlParams, function(err, result) {
-//   if (err) {
-//     console.log("[INSERT ERROR] - ", err.message);
-//     return;
-//   }
-//   console.log("--------------------------INSERT----------------------------");
-//   //console.log('INSERT ID:',result.insertId);
-//   console.log("INSERT ID:", result);
-//   console.log(
-//     "-----------------------------------------------------------------\n\n"
-//   );
-// });
-
-let  sql = "SELECT * FROM user WHERE account='admin'"
+let  sql = "SELECT * FROM article"
     connection.query(sql,function (err, result) {
     if(err){
       console.log('[SELECT ERROR] - ',err.message);

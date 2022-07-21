@@ -18,7 +18,7 @@ app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
-// get方式监听/login请求
+// post方式监听/login请求
 app.post("/login", express.json(), (req, res) => {
   const {account,passWord} = req.body;
 	let  sql = "SELECT * FROM user WHERE account='"+ account +"'";
@@ -51,7 +51,36 @@ app.post("/login", express.json(), (req, res) => {
 })
 // connection.end();
 })
- 
+// 博客发布  /publish
+app.post("/publish", express.json(), (req, res) => {
+  const timeStamp = Date.now();
+  const {title,type,content,author,avatar,coverImg,userId} = req.body;
+  let addSql = "INSERT INTO article(title,type,content,author,avatar,timeStamp,coverImg,userId) VALUES(?,?,?,?,?,?,?,?);";
+  let addSqlParams = [title,type,content,author,avatar,timeStamp,coverImg,userId];
+  // console.log(addSqlParams)
+    connection.query(addSql,addSqlParams,function (err, result) {
+        if(err){
+         console.log('[INSERT ERROR] - ',err.message);
+         res.send({code:201,message:'发布失败'}) 
+         return;
+        }              
+       console.log('INSERT ID:',result);  
+       res.send({code:200,message:'发布成功'})      
+});
+})
+// 查询所有博文  /getBlog
+app.get("/getBlog", express.json(), (req, res) => {
+  // const {title,type,content,author,avatar,coverImg,userId} = req.query;
+  let  sql = "SELECT * FROM article"
+  connection.query(sql,function (err, result) {
+  if(err){
+    console.log('[SELECT ERROR] - ',err.message);
+    res.send({code:201,message:'查询失败'}) 
+    return;
+  }
+  res.send({code:200,message:'查询成功',data:result})   
+});
+})
  
 // 监听3300端口
 app.listen(3300, () => {

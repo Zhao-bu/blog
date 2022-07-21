@@ -15,6 +15,9 @@ export default {
 </script>
 
 <style>
+.el-card__body{
+  padding: 8px 6px;
+}
 /* #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

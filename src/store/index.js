@@ -12,6 +12,7 @@ const store = new Vuex.Store({
         id: "1",
         title: "首页",
         haveSub: false,
+        disabled:false,
         path:'/',
         submenu: []
       },
@@ -19,6 +20,7 @@ const store = new Vuex.Store({
         id: "2",
         title: "内容",
         haveSub: false,
+        disabled:false,
         path:'/content',
         submenu: []
       },
@@ -26,18 +28,21 @@ const store = new Vuex.Store({
         id: "3",
         title: "专区",
         haveSub: false,
+        disabled:false,
         submenu: []
       },
       {
         id: "4",
         title: "提问",
         haveSub: false,
+        disabled:false,
         submenu: []
       },
       {
         id: "5",
         title: "工作台",
         haveSub: true,
+        disabled:false,
         submenu: []
       }
     ],

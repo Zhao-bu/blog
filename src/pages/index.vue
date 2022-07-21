@@ -1,9 +1,13 @@
 <template>
     <div>
-        <v-header ref="vHeader"></v-header>
+        <v-header ref="vHeader" class="header"></v-header>
         <div class="v-grid">
             <div class="grid-left"></div>
-            <v-content></v-content>
+            <div>
+                <v-content v-if="!showBlog" ></v-content>
+                <v-blog v-else></v-blog>
+            </div>
+           
             <div class="grid-right">
                 <el-carousel height="200px" class="carousel">
                     <el-carousel-item v-for="item in 5" :key="item">
@@ -14,9 +18,9 @@
             </div>
         </div>
     </div>
-
 </template>
 <script>
+import vBlog from "@/components/v-blog"
 import vHeader from "@/components/v-header";
 import vContent from "@/components/v-content";
 import vCard from "@/components/v-card";
@@ -24,15 +28,23 @@ export default {
     components: {
         vHeader,
         vContent,
-        vCard
+        vCard,
+        vBlog
     },
     data() {
         return {
             cardList: [1, 1, 1, 1, 1, 1, 1],
-            carouselList:[]
+            carouselList:[],
+            showBlog:false,
+            blogId:''
         };
     },
     methods: {
+        changeShow(e){
+            this.blogId = e;
+            this.showBlog = true
+            console.log(e)
+        },
         commit() {
             // setTabIndex
             this.$store.commit('setTabIndex', '3')
@@ -58,10 +70,9 @@ export default {
 
 .v-grid {
     display: grid;
-    width: 100%;
-    grid-template-columns: 15% 62% 22%;
+
+    grid-template-columns: 14% 62% 22%;
     grid-gap: 1%;
-    height: 100vh;
 }
 .el-carousel__item h3 {
     color: #475669;

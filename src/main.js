@@ -9,6 +9,11 @@ import 'element-ui/lib/theme-chalk/index.css';
 import axios from "axios";
 
 
+Vue.use(ElementUI);
+Vue.config.productionTip = false
+Vue.prototype.$store = store
+Vue.prototype.$axios = axios;//把axios挂载到vue上
+
 /* v-md-editor 编辑器 start  */
 /* 1、v-md-editor 基础引用  */
 import VueMarkdownEditor from '@kangc/v-md-editor';
@@ -36,10 +41,6 @@ Vue.component('MdEditor', mdEditor);
 /* v-md-editor 编辑器 end  */
 
 
-Vue.use(ElementUI);
-Vue.config.productionTip = false
-Vue.prototype.$store = store
-Vue.prototype.$axios = axios;//把axios挂载到vue上
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
