@@ -10,7 +10,7 @@ npm install
 ### 启动项目
 ```sh
 cd servicer
-node index.js
+node app.js
 
 npm run dev
 ```
