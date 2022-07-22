@@ -72,8 +72,19 @@ function queryUser(){
    console.log('------------------------------------------------------------\n\n');  
 });
 }
+let  innersql = "UPDATE user SET avatar='https://avatars.githubusercontent.com/u/79249312?s=48&v=4' WHERE id='4';" 
+    connection.query(innersql,function (err, result) {
+    if(err){
+      console.log('[SELECT ERROR] - ',err.message);
+      return;
+    }
+	data = result
+   console.log('--------------------------SELECT----------------------------');
+   console.log(result);
+   console.log('------------------------------------------------------------\n\n');  
+});
 
-let  sql = "SELECT * FROM article"
+let  sql = "SELECT * FROM user"
     connection.query(sql,function (err, result) {
     if(err){
       console.log('[SELECT ERROR] - ',err.message);

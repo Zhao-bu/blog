@@ -3,9 +3,9 @@
         <!-- <el-tag>
             <i class="el-icon-arrow-left"></i> 返回
         </el-tag> -->
-        <h1 class="title">11111</h1>
-        <p>2022</p>
-        <vue-markdown :source="msg"></vue-markdown>
+        <h1 class="title">{{blog.title}}</h1>
+        <p>{{ new Date(parseInt(blog.timeStamp)).toLocaleString()}}</p>
+        <vue-markdown :source="blog.content"></vue-markdown>
     </div>
 </template>
 
@@ -18,15 +18,22 @@ export default {
     components: {
         VueMarkdown
     },
+  props: {
+    blog: {
+      type: Object, //类型
+      required: true, //必要性
+      default: {} //默认值
+    }
+  },
     data() {
         return {
             value: '',
-            msg: ""
+            msg: "",
         }
     },
-    created() {
-        this.msg = localStorage.getItem('str')
-    }
+    methods:{
+       
+}
 }
 </script>
 

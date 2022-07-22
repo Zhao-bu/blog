@@ -1,5 +1,5 @@
 ### 准备
-* node
+* node.js
 * mysql数据库
 
 ### 安装依赖

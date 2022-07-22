@@ -1,9 +1,7 @@
 <template>
     <div class="container">
-
-
         <div class="page-header">
-            <div style="font-size:16px;color:gray"> <i class="el-icon-arrow-left"></i>返回</div>
+            <div style="font-size:16px;color:gray" @click="goBack" > <i class="el-icon-arrow-left"></i>返回</div>
             <div>
                 <el-input placeholder="请输入文章标题" v-model="article.title" class="input-with-select"></el-input>
             </div>
@@ -19,8 +17,6 @@
         </el-upload> -->
         <MdEditor :content.sync="article.content"></MdEditor>
     </div>
-</template>
-
 </template>
 
 <script>
@@ -47,13 +43,10 @@ export default {
             return this.$store.state.userInfo
         },
     },
-    mounted(){
-        console.log(this)
-        console.log(this.userInfo)
-    },
     methods: {
         goBack() {
             console.log('go back');
+            that.$router.push('/')
         },
         onSave(){
             localStorage.setItem('str',this.article.content);
@@ -70,19 +63,13 @@ export default {
                 that.$message('标题不能为空');
                 return
             }
-            console.log(that.userInfo)
             this.article.author = this.userInfo.nickName;
             this.article.avatar = this.userInfo.avatar;
             this.article.userId = this.userInfo.id
-            that.$axios({
-                method: "post",//指定请求方式
-                url: "http://localhost:3300/publish",
-                data:that.article,
-            }).then(function (res) {
-                console.log(res)
-                that.$message(message);
-            })
-            
+            this.$api.demo.publish(that.article).then((res) => {
+                that.$message(res.message);
+                that.$router.push('/')
+            })            
         },
     }
 }

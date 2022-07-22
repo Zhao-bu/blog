@@ -68,10 +68,11 @@ app.post("/publish", express.json(), (req, res) => {
        res.send({code:200,message:'发布成功'})      
 });
 })
-// 查询所有博文  /getBlog
-app.get("/getBlog", express.json(), (req, res) => {
-  // const {title,type,content,author,avatar,coverImg,userId} = req.query;
-  let  sql = "SELECT * FROM article"
+// 查询博文  /getBlog
+app.post("/getBlog",express.json(),(req, res) => {
+  const {bid} = req.body;
+  console.log(req.query)
+  let  sql = bid ? `SELECT * FROM article WHERE bid=${bid};` : "SELECT * FROM article"
   connection.query(sql,function (err, result) {
   if(err){
     console.log('[SELECT ERROR] - ',err.message);
@@ -81,7 +82,29 @@ app.get("/getBlog", express.json(), (req, res) => {
   res.send({code:200,message:'查询成功',data:result})   
 });
 })
+// 查询用户  /getUser
+app.post("/getUser",express.json(),(req, res) => {
+  const {userId} = req.body;
+  console.log(req.query)
+  let  sql = `SELECT * FROM user WHERE id=${userId};`
+  connection.query(sql,function (err, result) {
+  if(err){
+    console.log('[SELECT ERROR] - ',err.message);
+    res.send({code:201,message:'查询失败'}) 
+    return;
+  }
+  let user = result[0];
+  Reflect.deleteProperty(user, 'passWord');
+  Reflect.deleteProperty(user, 'account')
+  res.send({code:200,message:'查询成功',data:user})   
+});
+})
  
+
+
+
+
+
 // 监听3300端口
 app.listen(3300, () => {
     console.log('服务器运行在3300');

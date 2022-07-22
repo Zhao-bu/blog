@@ -39,25 +39,17 @@ export default {
     methods: {
         userLogin() {
             let that = this;
-            that.$axios({
-                method: "post",//指定请求方式
-                url: "http://localhost:3300/login",//请求接口（相对接口，后面会介绍到）
-                data:that.user,
-            }).then(function (res) {
+            this.$api.demo.login(that.user).then((res)=>{
                 console.log(res)
                 //接口成功返回结果执行
-                const {code,data,message} = res.data;
+                const {code,data,message} = res;
                 if(code == '200'){
+                    sessionStorage.setItem('userInfo', JSON.stringify(data)) // 本地存储一份
                     that.$store.commit('setUserInfo', data)
-                    
                     that.$router.push('/')
                 }else{
                     that.$message(message);
                 }
-                
-               
-            }).catch(function (err) {
-                //请求失败或者接口返回失败或者.then()中的代码发生错误时执行
             })
         },
     }

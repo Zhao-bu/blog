@@ -2,11 +2,11 @@
   <div>
     <el-card class="box-card"  shadow="hover">
       <div class="avatar">
-        <el-avatar size="large" :src="avatar"></el-avatar>
-        <p>Zhao-bu</p>
-        <p style="color:gray ;margin:2px">talk is cheap</p>
+        <el-avatar size="large" :src="info.avatar"></el-avatar>
+        <p>{{info.nickName}}</p>
+        <!-- <p style="color:gray ;margin:2px">talk is cheap</p> -->
         <div class="v-grid">
-          <p>10</p><p>10</p><p>10</p>
+          <p>{{info.articleNum}}</p><p>{{info.supportNum}}</p><p>{{info.collectionNum}}</p>
           <p>文章</p><p>获赞</p><p>收藏</p>
         </div>
       </div>
@@ -26,7 +26,14 @@ export default {
       msg: '',
       avatar:'https://avatars.githubusercontent.com/u/79249312?v=4',
     }
-  }
+  },
+  props: {
+    info: {
+      type: Object, //类型
+      required: true, //必要性
+      default: {} //默认值
+    }
+  },
 }
 </script>
 <style scoped>
