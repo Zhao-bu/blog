@@ -1,9 +1,6 @@
 import request from '@/api/utils/request'
 
 const demo ={
-    register(params){
-        return request.post('/admin/user/register', params)
-    },
     login(params){
         return request.post('/admin/user/login', params)
     },
@@ -16,7 +13,6 @@ const demo ={
     getUser(params){
         return request.post('/admin/user/getUser', params)
     }
-    
 }
 export default demo
 

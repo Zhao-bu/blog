@@ -28,7 +28,6 @@
                 <div class="btn-box-r">
                     <el-button type="primary" @click="register">注册</el-button>
                 </div>
-                <p class="tips" @click="showLogin = true"> <i class="el-icon-arrow-left"></i>已注册去登录</p>
                 </div>
         </el-card>
     </div>
@@ -63,7 +62,16 @@ export default {
                 return
             }
             this.$api.demo.register(that.user).then((res)=>{
-                that.$message(res.message);
+                console.log(res)
+                //接口成功返回结果执行
+                // const {code,data,message} = res;
+                // if(code == '200'){
+                //     sessionStorage.setItem('userInfo', JSON.stringify(data)) // 本地存储一份
+                //     that.$store.commit('setUserInfo', data)
+                //     that.$router.push('/')
+                // }else{
+                //     that.$message(message);
+                // }
             })
         },
        
@@ -136,9 +144,5 @@ export default {
     width: 100%;
     margin: 20px 0;
     text-align: center;
-}
-.tips{
-    font-size: 12px;
-    color: #409EFF;
 }
 </style>

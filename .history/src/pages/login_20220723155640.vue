@@ -9,26 +9,23 @@
                     <i slot="prefix" class="el-input__icon el-icon-lock"></i>
                 </el-input>
                 <div class="btn-box">
-                <el-button type="primary" plain @click="showLogin = false">注册</el-button>
+                <el-button type="primary" plain @click="register">注册</el-button>
                 <el-button type="primary" @click="userLogin">登录</el-button>
                 </div>
                 </div>
         </el-card>
         <el-card class="box-card" v-else>
             <div class="info-box">
-                <el-input placeholder="请输入昵称" v-model="user.nickName" class="input">
-                    <i slot="prefix" class="el-input__icon el-icon-user"></i>
-                </el-input>
                 <el-input placeholder="请输入用户名" v-model="user.account" class="input">
                     <i slot="prefix" class="el-input__icon el-icon-user"></i>
                 </el-input>
                 <el-input placeholder="请输入密码" v-model="user.passWord" show-password class="input">
                     <i slot="prefix" class="el-input__icon el-icon-lock"></i>
                 </el-input>
-                <div class="btn-box-r">
-                    <el-button type="primary" @click="register">注册</el-button>
+                <div class="btn-box">
+                <!-- <el-button type="primary" plain>注册</el-button>
+                <el-button type="primary" @click="userLogin">登录</el-button> -->
                 </div>
-                <p class="tips" @click="showLogin = true"> <i class="el-icon-arrow-left"></i>已注册去登录</p>
                 </div>
         </el-card>
     </div>
@@ -46,10 +43,8 @@ export default {
             user:{
                 account:"admin",
                 passWord:'123456',
-                nickName:'',
-                avatar:'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+                isLogin:true
             },
-            showLogin:true
         }
     },
     beforeCreate(){
@@ -59,19 +54,10 @@ export default {
     methods: {
         register(){
             let that = this;
-            if(!that.checkInput()){
-                return
-            }
-            this.$api.demo.register(that.user).then((res)=>{
-                that.$message(res.message);
-            })
+            that.showLogin = false;
         },
-       
         userLogin() {
             let that = this;
-            if(!that.checkInput()){
-                return
-            }
             this.$api.demo.login(that.user).then((res)=>{
                 console.log(res)
                 //接口成功返回结果执行
@@ -85,24 +71,6 @@ export default {
                 }
             })
         },
-        checkInput(){
-            let that =this;
-            let {account,passWord,nickName} = that.user;
-            if(account == ''){
-                that.$message('请输入用户名');
-                return false
-            }
-            else if(passWord == ''){
-                that.$message('请输入密码');
-                return false
-            }
-            else if(nickName == '' &&  !that.showLogin) {
-                that.$message('昵称不能为空');
-                return false
-            }else{
-                return true
-            }
-        }
     }
 }
 </script>
@@ -132,13 +100,5 @@ export default {
     grid-template-columns: 38% 38%;
     grid-gap: 24%;
 }
-.btn-box-r{
-    width: 100%;
-    margin: 20px 0;
-    text-align: center;
-}
-.tips{
-    font-size: 12px;
-    color: #409EFF;
-}
+
 </style>

@@ -28,7 +28,6 @@
                 <div class="btn-box-r">
                     <el-button type="primary" @click="register">注册</el-button>
                 </div>
-                <p class="tips" @click="showLogin = true"> <i class="el-icon-arrow-left"></i>已注册去登录</p>
                 </div>
         </el-card>
     </div>
@@ -136,9 +135,5 @@ export default {
     width: 100%;
     margin: 20px 0;
     text-align: center;
-}
-.tips{
-    font-size: 12px;
-    color: #409EFF;
 }
 </style>
