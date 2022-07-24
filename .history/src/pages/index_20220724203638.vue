@@ -82,36 +82,11 @@ export default {
 }
 </script>
 <style scoped>
-.page {
-    height: 100vh;
-}
-
-.logImg {
-    widows: 200px;
-    height: 100px;
-}
-
 .v-grid {
     display: grid;
 
     grid-template-columns: 14% 62% 22%;
     grid-gap: 1%;
-}
-
-.el-carousel__item h3 {
-    color: #475669;
-    /* font-size: 14px; */
-    opacity: 0.75;
-    line-height: 150px;
-    margin: 0;
-}
-
-.el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-}
-
-.el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
 }
 
 .carousel {

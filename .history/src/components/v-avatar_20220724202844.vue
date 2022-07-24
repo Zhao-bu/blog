@@ -29,8 +29,6 @@ export default {
     methods: {
         handleCommand(command) {
             const that = this;
-            console.log(command)
-            that.$store.commit('setTabIndex', '')
             that.$router.push(command)
             // if (command == "signOut") {
             //     that.$store.commit('setUserInfo', {})

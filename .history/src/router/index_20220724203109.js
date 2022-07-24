@@ -6,7 +6,6 @@ import content from '@/pages/content'
 import write from '@/pages/write'
 import login from '@/pages/login'
 import blog from '@/pages/blog'
-import personal from '@/pages/personal'
 
 Vue.use(Router)
 

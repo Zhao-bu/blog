@@ -49,7 +49,7 @@ const store = new Vuex.Store({
     dropList:[{
       id:'1',
       title:'个人中心',
-      path:'/personal'
+      path:'personal'
     },{
       id:'2',
       title:'内容管理',
