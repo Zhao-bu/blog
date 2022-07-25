@@ -3,11 +3,30 @@ var router = express.Router();   //可使用 express.Router 类创建模块化�
 const mysql = require('mysql')
 const db = require('../../configdb');
 
+var updateUserInfo = function(){
+  let sql = 'Update article,user set article.avatar= user.avatar,article.author = user.nickName where article.userId = user.id';
+  const conn = mysql.createConnection(db)
+  conn.query(sql,function (err, result) {
+    if(err){
+      console.log('[SELECT ERROR] - ',err.message);
+      return;
+    } 
+  });
+  conn.end();
+}
 
 // 查询博文  http://localhost:3001/admin/article/getBlog
 router.post("/getBlog",express.json(),(req, res) => {
   const {bid} = req.body;
   const conn = mysql.createConnection(db)
+  let updateSql = 'Update article,user set article.avatar= user.avatar,article.author = user.nickName where article.userId = user.id';
+  conn.query(updateSql,function (err, result) {
+    if(err){
+      console.log('[SELECT ERROR] - ',err.message);
+      return;
+    } 
+  });
+
   console.log(req.query)
   let  sql = bid ? `SELECT * FROM article WHERE bid=${bid};` : "SELECT * FROM article"
   conn.query(sql,function (err, result) {
@@ -39,6 +58,7 @@ router.post("/publish", express.json(), (req, res) => {
 });
 conn.end();
 })
+
 
 
 // http://localhost:3001/admin/article

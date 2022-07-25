@@ -17,14 +17,6 @@ const store = new Vuex.Store({
         submenu: []
       },
       {
-        id: "2",
-        title: "内容",
-        haveSub: false,
-        disabled:false,
-        path:'/content',
-        submenu: []
-      },
-      {
         id: "3",
         title: "专区",
         haveSub: false,

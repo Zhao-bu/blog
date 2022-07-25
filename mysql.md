@@ -22,9 +22,9 @@
 | title | varchar | 标题 |
 | type | varchar | 类型 |
 | avatar | varchar | 作者头像 |
+| author | varchar | 作者昵称 |
 | timeStamp | varchar | 发布时间戳 |
 | content | varchar | 内容 |
 | coverImg | varchar | 封面图 |
 | supportNum | int | 点赞数 |
 | collectNum | int | 收藏数 |
-
