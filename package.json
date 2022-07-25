@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "serve": "node servicer/app.js"
   },
   "dependencies": {
     "@kangc/v-md-editor": "^1.7.11",
@@ -16,6 +17,7 @@
     "express": "^4.18.1",
     "github-markdown-css": "^5.1.0",
     "highlightjs-line-numbers.js": "^2.8.0",
+    "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1",
     "save": "^2.5.0",
     "text-loader": "0.0.1",

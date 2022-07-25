@@ -13,7 +13,9 @@ app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
- 
+
+app.use(express.static('public/img')); // 设置静态图片访问的路径 http://localhost:3001
+
  
 app.use('/admin',admin);  //后台(路由)  http://localhost:3001/admin
 // app.use('/',admin);     //默认加载前台(路由)
@@ -21,7 +23,7 @@ app.use('/admin',admin);  //后台(路由)  http://localhost:3001/admin
 
 
 // 监听3001端口
-app.listen(3300, () => {
-    console.log('服务器运行中,端口:3300');
+app.listen(3001, () => {
+    console.log('服务器运行中,端口:3001');
 })
  

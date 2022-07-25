@@ -48,7 +48,7 @@ export default {
         changeShow(e) {
             this.showBlog = true
             console.log(e)
-            this.$store.commit('setTabIndex', '2')
+            this.$store.commit('setTabIndex', '')
             this.$router.push({
                 name: 'content',
                 params: {

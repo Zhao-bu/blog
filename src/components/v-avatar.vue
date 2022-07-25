@@ -29,15 +29,15 @@ export default {
     methods: {
         handleCommand(command) {
             const that = this;
+             if (command == "signOut") {
+                that.$store.commit('setUserInfo', {})
+                sessionStorage.removeItem("userInfo");
+                that.$router.push('/login')
+                return
+            }
             console.log(command)
             that.$store.commit('setTabIndex', '')
             that.$router.push(command)
-            // if (command == "signOut") {
-            //     that.$store.commit('setUserInfo', {})
-            // } else {
-            //     that.$message('click on item ' + command);
-            // }
-
         },
     }
 }

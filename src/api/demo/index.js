@@ -15,6 +15,12 @@ const demo ={
     },
     getUser(params){
         return request.post('/admin/user/getUser', params)
+    },
+    userEdit(params){
+        return request.post('/admin/user/userEdit', params)
+    },
+    revisePass(params){
+        return request.post('/admin/user/revisePass', params)
     }
     
 }

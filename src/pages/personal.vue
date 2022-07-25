@@ -9,12 +9,11 @@
                     <div class="card1">
                         <div class="v-grid-one">
                             <div class="avatar">
-                                <el-avatar :size="85" :src="circleUrl"></el-avatar>
+                                <el-avatar :size="85" :src="userInfo.avatar"></el-avatar>
                             </div>
                             <div class="synopsis">
-                                <P>Jack</P>
-                                <P>Jack</P>
-                                <P>Jack</P>
+                                <P>{{userInfo.nickName}}</P>
+                                <P>{{userInfo.synopsis || '您还没有编辑简介'}}</P>
                             </div>
                             <div>
                                 <el-button style="float:right" type="primary" size="small" plain @click="showEdit=true">编辑个人资料</el-button>
@@ -56,9 +55,39 @@ export default {
             circleUrl: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
         }
     },
+    computed:{
+        userInfo(){
+            return this.$store.state.userInfo
+        }
+    },
     methods:{
         onSubmit(params){
             console.log(params)
+            const that = this;
+            this.$api.demo.userEdit(params).then((res)=>{
+                //接口成功返回结果执行
+                const {code,data,message} = res;
+                that.$message(message);
+                that.showEdit = false;
+                if(code == '200'){
+                    that.getUser(params.uid)
+                }else{
+                    
+                }
+            })
+        },
+         getUser(e){
+            let that = this;
+            this.$api.demo.getUser({userId:e}).then((res) => {
+                console.log(res)
+                const { code, data, message } = res;
+                if (code == 200) {
+                   sessionStorage.setItem('userInfo', JSON.stringify(data)) // 本地存储一份
+                    that.$store.commit('setUserInfo', data)
+                } else {
+                    that.$message(message);
+                }
+            })
         }
     }
 }
